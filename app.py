@@ -1,4 +1,5 @@
 import os
+import requests
 import streamlit as st
 import tensorflow as tf
 import numpy as np
@@ -26,23 +27,32 @@ CLASS_NAMES = [
 ]
 
 MODEL_PATH = "solar_panel_model.keras"
+MODEL_URL = "https://huggingface.co/mohanbe2024/solar-guard-model/resolve/main/solar_panel_model.keras"
+
+
+def download_model():
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("⬇️ Downloading model (first run only)..."):
+            response = requests.get(MODEL_URL, stream=True)
+            response.raise_for_status()
+            with open(MODEL_PATH, "wb") as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
 
 
 @st.cache_resource
 def load_solar_model():
+    download_model()
     return tf.keras.models.load_model(MODEL_PATH)
 
 
 model = None
 
-if os.path.exists(MODEL_PATH):
-    try:
-        model = load_solar_model()
-        st.success("✅ Model loaded successfully!")
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-else:
-    st.info("ℹ️ Model not found. Running in UI Preview Mode.")
+try:
+    model = load_solar_model()
+    st.success("✅ Model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 
 
 uploaded_file = st.file_uploader(
