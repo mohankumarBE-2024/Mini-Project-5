@@ -14,7 +14,7 @@ st.set_page_config(
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(180deg, #C9520A 0%, #E8A020 55%, #F4D35E 100%) !important;
+    background: linear-gradient(180deg, #6B3410 0%, #2b1a05 30%, #0E1117 70%) !important;
 }
 [data-testid="stHeader"] {
     background: rgba(0,0,0,0) !important;
