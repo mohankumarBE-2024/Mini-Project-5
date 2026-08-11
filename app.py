@@ -13,8 +13,11 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-.stApp {
-    background: linear-gradient(180deg, #1a1408 0%, #0E1117 40%);
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(180deg, #2b1a05 0%, #0E1117 55%) !important;
+}
+[data-testid="stHeader"] {
+    background: rgba(0,0,0,0) !important;
 }
 [data-testid="stFileUploader"] {
     background-color: #1C1F26;
