@@ -11,6 +11,29 @@ st.set_page_config(
     layout="centered"
 )
 
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(180deg, #1a1408 0%, #0E1117 40%);
+}
+[data-testid="stFileUploader"] {
+    background-color: #1C1F26;
+    border: 1px solid #F7931E33;
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+[data-testid="stMetric"] {
+    background-color: #1C1F26;
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid #F7931E33;
+}
+div[data-baseweb="notification"] {
+    border-radius: 10px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown(
     "<h1 style='text-align:center;'>☀️ SolarGuard</h1>"
     "<p style='text-align:center; color:gray;'>AI-Powered Solar Panel Condition Classifier</p>",
