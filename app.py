@@ -4,6 +4,7 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+import base64
 
 st.set_page_config(
     page_title="Solar Panel Fault Detector",
@@ -11,12 +12,16 @@ st.set_page_config(
     layout="centered"
 )
 
-import os
 
 BACKGROUND_IMAGE = os.path.join(
     os.path.dirname(__file__),
     "solar_background.jpg"
 )
+
+with open(BACKGROUND_IMAGE, "rb") as image_file:
+    encoded_image = base64.b64encode(
+        image_file.read()
+    ).decode()
 
 st.markdown(
     f"""
@@ -28,7 +33,7 @@ st.markdown(
                 rgba(0, 0, 0, 0.55),
                 rgba(0, 0, 0, 0.65)
             ),
-            url("file://{BACKGROUND_IMAGE}");
+            url("data:image/jpeg;base64,{encoded_image}");
 
         background-size: cover;
         background-position: center;
@@ -36,7 +41,7 @@ st.markdown(
     }}
 
     [data-testid="stHeader"] {{
-        background: rgba(0,0,0,0) !important;
+        background: rgba(0, 0, 0, 0) !important;
     }}
 
     [data-testid="stFileUploader"] {{
@@ -53,11 +58,14 @@ st.markdown(
         border: 1px solid rgba(247, 147, 30, 0.35);
     }}
 
+    div[data-baseweb="notification"] {{
+        border-radius: 10px;
+    }}
+
     </style>
     """,
     unsafe_allow_html=True
 )
-
 st.markdown(
     "<h1 style='text-align:center;'>☀️ SolarGuard</h1>"
     "<p style='text-align:center; color:gray;'>AI-Powered Solar Panel Condition Classifier</p>",
