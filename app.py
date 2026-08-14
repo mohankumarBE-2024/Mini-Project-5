@@ -11,31 +11,52 @@ st.set_page_config(
     layout="centered"
 )
 
-st.markdown("""
-<style>
-[data-testid="stAppViewContainer"] {
-    background: linear-gradient(180deg, #6B3410 0%, #2b1a05 30%, #0E1117 70%) !important;
-}
-[data-testid="stHeader"] {
-    background: rgba(0,0,0,0) !important;
-}
-[data-testid="stFileUploader"] {
-    background-color: #1C1F26;
-    border: 1px solid #F7931E33;
-    border-radius: 12px;
-    padding: 1.2rem;
-}
-[data-testid="stMetric"] {
-    background-color: #1C1F26;
-    border-radius: 12px;
-    padding: 1rem;
-    border: 1px solid #F7931E33;
-}
-div[data-baseweb="notification"] {
-    border-radius: 10px;
-}
-</style>
-""", unsafe_allow_html=True)
+import os
+
+BACKGROUND_IMAGE = os.path.join(
+    os.path.dirname(__file__),
+    "solar_background.jpg"
+)
+
+st.markdown(
+    f"""
+    <style>
+
+    [data-testid="stAppViewContainer"] {{
+        background-image:
+            linear-gradient(
+                rgba(0, 0, 0, 0.55),
+                rgba(0, 0, 0, 0.65)
+            ),
+            url("file://{BACKGROUND_IMAGE}");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
+
+    [data-testid="stHeader"] {{
+        background: rgba(0,0,0,0) !important;
+    }}
+
+    [data-testid="stFileUploader"] {{
+        background-color: rgba(28, 31, 38, 0.88);
+        border: 1px solid rgba(247, 147, 30, 0.35);
+        border-radius: 12px;
+        padding: 1.2rem;
+    }}
+
+    [data-testid="stMetric"] {{
+        background-color: rgba(28, 31, 38, 0.88);
+        border-radius: 12px;
+        padding: 1rem;
+        border: 1px solid rgba(247, 147, 30, 0.35);
+    }}
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     "<h1 style='text-align:center;'>☀️ SolarGuard</h1>"
