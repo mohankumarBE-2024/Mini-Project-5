@@ -15,7 +15,7 @@ st.set_page_config(
 
 BACKGROUND_IMAGE = os.path.join(
     os.path.dirname(__file__),
-    "solar_background.jpg"
+    "solar_panel.jpg"
 )
 
 with open(BACKGROUND_IMAGE, "rb") as image_file:
