@@ -180,9 +180,3 @@ if image is not None:
             getattr(st, status["level"])(status["note"])
             st.metric("Confidence", f"{confidence:.1f}%")
             st.progress(float(confidence) / 100)
-
-        st.divider()
-        st.markdown("#### Full Prediction Breakdown")
-        for name, prob in sorted(zip(CLASS_NAMES, probabilities), key=lambda x: -x[1]):
-            st.markdown(f"{STATUS_MAP[name]['icon']} **{name}**")
-            st.progress(float(prob))
