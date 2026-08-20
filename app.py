@@ -127,9 +127,33 @@ uploaded_file = st.file_uploader(
     type=["jpg", "jpeg", "png"]
 )
 
+SAMPLE_IMAGES = {
+    "Clean":              "samples/clean.jpg",
+    "Dusty":               "samples/dusty.jpg",
+    "Bird-drop":           "samples/bird_drop.jpg",
+    "Snow-Covered":        "samples/snow_covered.jpg",
+    "Electrical-damage":   "samples/electrical_damage.jpg",
+    "Physical-Damage":     "samples/physical_damage.jpg",
+}
+
+st.markdown("#### Or try a sample image")
+sample_cols = st.columns(len(SAMPLE_IMAGES))
+for col, (label, path) in zip(sample_cols, SAMPLE_IMAGES.items()):
+    with col:
+        st.image(path, use_container_width=True)
+        if st.button(label, key=f"sample_{label}", use_container_width=True):
+            st.session_state.selected_sample = path
+
+st.divider()
+
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
+elif st.session_state.get("selected_sample"):
+    image = Image.open(st.session_state.selected_sample).convert("RGB")
+else:
+    image = None
 
+if image is not None:
     if model is None:
         st.image(image, caption="Uploaded Image", use_container_width=True)
         st.warning(
