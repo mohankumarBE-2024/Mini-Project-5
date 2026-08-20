@@ -136,11 +136,10 @@ SAMPLE_IMAGES = {
     "Physical-Damage":     "samples/physical_damage.jpg",
 }
 
-st.markdown("#### Or try a sample image")
+st.markdown("#### Try a Sample Image")
 sample_cols = st.columns(len(SAMPLE_IMAGES))
 for col, (label, path) in zip(sample_cols, SAMPLE_IMAGES.items()):
     with col:
-        st.image(path, use_container_width=True)
         if st.button(label, key=f"sample_{label}", use_container_width=True):
             st.session_state.selected_sample = path
 
