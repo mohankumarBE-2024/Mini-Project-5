@@ -136,7 +136,7 @@ SAMPLE_IMAGES = {
     "Physical-Damage":     "samples/physical_damage.jpg",
 }
 
-st.markdown("#### Try a Sample Image")
+st.markdown("<h4 style='text-align: center;'>Try a Sample Image</h4>", unsafe_allow_html=True)
 sample_cols = st.columns(len(SAMPLE_IMAGES))
 for col, (label, path) in zip(sample_cols, SAMPLE_IMAGES.items()):
     with col:
